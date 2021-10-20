@@ -62,6 +62,7 @@ class Nutritie{
         float proteine;
         float apa;
     public:
+        Nutritie(){}
         Nutritie(float carbohidrati, float grasimi, float fibre, float proteine, float apa) : carbohidrati(carbohidrati), grasimi(grasimi),  fibre(fibre), proteine(proteine), apa(apa){
             // Suntem in constructorul de initializare
         }
@@ -83,6 +84,9 @@ class Utilizator{
     Nutritie nutritie;
     std::vector <Exercitiu> exercitii;
     public:
+    Utilizator(int varsta, float greutate, float inaltime, const std::string &sex, const std::string &nume) : varsta(varsta), greutate(greutate), inaltime(inaltime), sex(sex), nume(nume){
+
+    }
     Utilizator(int varsta, float greutate, float inaltime, const std::string &sex, const std::string &nume, const Nutritie &nutritie, const std::vector<Exercitiu> exercitii) : varsta(varsta), greutate(greutate), inaltime(inaltime), sex(sex), nume(nume), nutritie(nutritie),  exercitii( exercitii){
         // Suntem in constructorul de initializare
     }
@@ -177,5 +181,8 @@ int main(){
     //std::cout << g.BMR(); //verificare metoda BMR
     //g.IMC(); //verificare metoda IMC
     // t.nr_total_calorii_arse(g.getGreutate());
+    Utilizator Andrei(20, 90.0, 185, "masculin", "Andrei", x, Exercitii);
+    //std::cout<<Andrei.AMR();
+    Andrei.IMC();
     return 0;
 }
