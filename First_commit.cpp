@@ -54,6 +54,27 @@ class Exercitiu{
         }
 };
 
+class Exercitiu_Maini: public Exercitiu{
+    private:
+
+    public:
+
+};
+
+class Exercitiu_Picioare: public Exercitiu{
+    private:
+
+    public:
+
+};
+
+class Exercitiu_Abdomen: public Exercitiu{
+    private:
+
+    public:
+
+};
+
 class Nutritie{
     private:
         float carbohidrati;
@@ -112,8 +133,8 @@ class Utilizator{
     int AMR(){
         float activitate;
         std::cout<<"Introduceti nivelul de activitate fizica zilnica dupa cum urmeaza: Sedentar(1.2), Putin activ(1.375), Moderat activ(1.55), Activ(1.725), Foarte activ(1.9)"<<std::endl;
-        std::cout<<"Numarul zilnic de calorii necesare pentru mentinerea greutatii actuale: ";
         std::cin>>activitate;
+        std::cout<<"Numarul zilnic de calorii necesare pentru mentinerea greutatii actuale: ";
         if(sex == "masculin")
             return (10*greutate + 6.25*inaltime - 5*varsta + 5)*activitate;
         else
