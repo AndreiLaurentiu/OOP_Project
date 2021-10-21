@@ -202,8 +202,6 @@ int main(){
     //std::cout << g.BMR(); //verificare metoda BMR
     //g.IMC(); //verificare metoda IMC
     // t.nr_total_calorii_arse(g.getGreutate());
-    Utilizator Andrei(20, 90.0, 185, "masculin", "Andrei", x, Exercitii);
-    //std::cout<<Andrei.AMR();
-    Andrei.IMC();
+    //g.IMC();
     return 0;
 }
