@@ -1,6 +1,10 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <fstream>
+
+std::ifstream inFile1;
+std::ifstream inFile2;
 
 class Exercitiu{
     private:
@@ -49,7 +53,8 @@ class Exercitiu{
         void nr_total_calorii_arse(float greutate){
             int MET;
             std::cout<<"Alegerea MET: Exercitiu usor - sub 3" << std::endl << "Exercitiu mediu - intre 3 si 6" << std::endl << "Exercitiu intens - peste 6" <<std::endl;
-            std::cin>>MET;
+            inFile1>>MET;
+            std::cout<<"Valoarea introdusa: "<<MET;
             std:: cout << "Numarul de calorii arse cu acest exercitiu: " << durata * (MET*3.5*greutate)/200;
         }
 };
@@ -127,13 +132,17 @@ class Utilizator{
     void adauga_exercitiu(Exercitiu exercitiu){
         exercitii.push_back(exercitiu);
     }
+    void scoate_exercitiu(){
+        exercitii.pop_back();
+    }
     float getGreutate() {
         return greutate;
     }
     int AMR(){
         float activitate;
         std::cout<<"Introduceti nivelul de activitate fizica zilnica dupa cum urmeaza: Sedentar(1.2), Putin activ(1.375), Moderat activ(1.55), Activ(1.725), Foarte activ(1.9)"<<std::endl;
-        std::cin>>activitate;
+        inFile2 >>activitate;
+        std::cout<<"Valoarea introdusa: "<<activitate;
         std::cout<<"Numarul zilnic de calorii necesare pentru mentinerea greutatii actuale: ";
         if(sex == "masculin")
             return (10*greutate + 6.25*inaltime - 5*varsta + 5)*activitate;
@@ -186,22 +195,38 @@ class Utilizator{
 };
 
 int main(){
-    std::string nume="Forfecari";
-    Exercitiu t(15, 4, 10, nume);
-    //std::cout << t; // testam operatorul <<
-    Exercitiu d=t, z;
-    //std::cout<<d; // testam cc-ul
-    z = t;
-    Exercitiu k(15, 5, 15, "Genoflexiuni");
-    std::vector <Exercitiu> Exercitii={t, k};
-    //std::cout<<z; // testam operatorul de atribuire
+    inFile1.open("MET.in");
+    if(inFile1.fail()){
+        std::cerr << "Eroare la deschiderea fisierului!";
+        exit(1);
+    }
+    inFile2.open("NivelActivitateFizica.in");
+    if(inFile2.fail()){
+        std::cerr << "Eroare la deschiderea fisierului!";
+        exit(1);
+    }
+    Exercitiu a(15, 4, 10, "Forfecari");
+    Exercitiu d(15, 5, 15, "Genoflexiuni");
+    Exercitiu f(4, 4, 2, "Rotari de cap");
+    Exercitiu b(20, 3, 15, "Abdomene");
+    //std::cout << a; // testam operatorul <<
+    Exercitiu h=a, c;
+    //std::cout<<h; // testam cc-ul
+    c = a;
+    //std::cout << c; // testam operatorul=
+    std::vector <Exercitiu> Exercitii={a, d, f};
     Nutritie x(300.0, 30.0,40.0 ,50.0, 2.0);
-    //std::cout << x; // testam operatorul <<
-    Utilizator g(20, 90.0, 185.0, "masculin", "Andrei", x, Exercitii);
-    //std::cout << g; // testam operatorul <<
-    //std::cout << g.BMR(); //verificare metoda BMR
-    //g.IMC(); //verificare metoda IMC
-    // t.nr_total_calorii_arse(g.getGreutate());
-    //g.IMC();
+    // std::cout << x; // testam operatorul <<
+    Utilizator e(20, 90.0, 185.0, "masculin", "Andrei", x, Exercitii);
+    //e.adauga_exercitiu(b); // testez functia de add
+    //std::cout << e;
+    // e.scoate_exercitiu();
+    // std::cout << e;
+    // std::cout << e; // testam operatorul <<
+    // std::cout << e.AMR()<<std::endl; //verificare metoda AMR
+    // e.IMC(); //verificare metoda IMC
+    // a.nr_total_calorii_arse(e.getGreutate());
+    inFile1 .close();
+    inFile2 .close();
     return 0;
 }
