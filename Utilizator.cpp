@@ -28,26 +28,22 @@ void Utilizator::scoate_exercitiu(Exercitiu exercitiul){
 float Utilizator::getGreutate() {
         return greutate;
     }
-int Utilizator::AMR_valoare(){
-        float activitate;
+int Utilizator::AMR_valoare(float activitate){
         std::cout<<"Introduceti nivelul de activitate fizica zilnica dupa cum urmeaza: Sedentar(1.2), Putin activ(1.375), Moderat activ(1.55), Activ(1.725), Foarte activ(1.9)"<<std::endl;
-        std::cin>>activitate;
         std::cout<<"Valoarea introdusa: "<<activitate<<std::endl;
         if(sex == "masculin")
             return (10*greutate + 6.25*inaltime - 5*varsta + 5)*activitate;
         else
             return (10*greutate + 4.7*inaltime - 5*varsta -161)*activitate;
     }
-void Utilizator::AMR_afisare(){
-        float activitate;
+void Utilizator::AMR_afisare(float activitate){
         std::cout<<"Introduceti nivelul de activitate fizica zilnica dupa cum urmeaza: Sedentar(1.2), Putin activ(1.375), Moderat activ(1.55), Activ(1.725), Foarte activ(1.9)"<<std::endl;
-        inFile2>>activitate;
-        std::cout<<"Valoarea introdusa: "<<activitate;
+        std::cout<<"Valoarea introdusa: "<<activitate<<std::endl;
         std::cout<<"Numarul zilnic de calorii necesare pentru mentinerea greutatii actuale: ";
         if(sex == "masculin")
-            std::cout<<(10*greutate + 6.25*inaltime - 5*varsta + 5)*activitate;
+            std::cout<<(10*greutate + 6.25*inaltime - 5*varsta + 5)*activitate<<std::endl;
         else
-            std::cout<<(10*greutate + 4.7*inaltime - 5*varsta -161)*activitate;
+            std::cout<<(10*greutate + 4.7*inaltime - 5*varsta -161)*activitate<<std::endl;
     }
 void Utilizator::IMC(){
         float IMC_result = greutate*std::pow(10, 4)/std::pow(inaltime, 2);

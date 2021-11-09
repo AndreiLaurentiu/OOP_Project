@@ -33,10 +33,8 @@ std::ostream &operator<<(std::ostream &os, const Exercitiu &Exercitiu) {
         return os;
         }
 
-void Exercitiu::nr_total_calorii_arse(float greutate){
-            int MET;
+void Exercitiu::nr_total_calorii_arse(float greutate, int MET){
             std::cout<<"Alegerea MET: Exercitiu usor - sub 3" << std::endl << "Exercitiu mediu - intre 3 si 6" << std::endl << "Exercitiu intens - peste 6" <<std::endl;
-            inFile1.in>>MET;
-            std::cout<<"Valoarea introdusa: "<<MET;
+            std::cout<<"Valoarea introdusa: "<<MET<<std::endl;
             std:: cout << "Numarul de calorii arse cu acest exercitiu: " << durata * (MET*3.5*greutate)/200;
         }

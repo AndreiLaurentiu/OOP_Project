@@ -2,7 +2,7 @@
 #include "Exercitiu.h"
 #include "Nutritie.h"
 #include <vector>
-std::ifstream inFile2;
+
 class Utilizator{
     private:
     int varsta;
@@ -19,7 +19,7 @@ class Utilizator{
     void adauga_exercitiu(const Exercitiu exercitiu);
     void scoate_exercitiu(Exercitiu exercitiul);
     float getGreutate();
-    int AMR_valoare();
-    void AMR_afisare();
+    int AMR_valoare(float activitate);
+    void AMR_afisare(float activitate);
     void IMC();
 };

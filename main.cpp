@@ -2,12 +2,11 @@
 #include <cmath>
 #include <vector>
 #include <string>
-#include "Exercitiu.h"
-#include "Nutritie.h"
+#include <fstream>
 #include "Utilizator.h"
 
-
 int main(){
+    std::ifstream inFile1, inFile2;
     inFile1.open("MET.in");
     if(inFile1.fail()){
         std::cerr << "Eroare la deschiderea fisierului!";
@@ -37,11 +36,16 @@ int main(){
     //e.scoate_exercitiu(b);
     //std::cout << e;
     //std::cout << e; //testam operatorul <<
-    //e.AMR_afisare(); //verificare metoda AMR_afisare
-    //x.Macro_calculator(e.AMR_valoare());
+    float activitate;
+    inFile2>>activitate;
+    e.AMR_afisare(activitate); //verificare metoda AMR_afisare
+    //x.Macro_calculator(e.AMR_valoare(activitate));
     //e.IMC(); //verificare metoda IMC
-    //a.nr_total_calorii_arse(e.getGreutate());
-    inFile1 .close();
-    inFile2 .close();
+    /*int MET;
+    inFile1>>MET;
+    a.nr_total_calorii_arse(e.getGreutate(), MET); // verificare metoda nr_calorii_arse 
+    */
+    inFile1.close();
+    inFile2.close();
     return 0;
 }
