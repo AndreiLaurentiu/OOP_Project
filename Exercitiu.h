@@ -1,8 +1,6 @@
 #pragma once
 #include <iostream>
-#include <fstream>
 
-std::ifstream inFile1;
 class Exercitiu{
     private:
         int nr_repetari;
@@ -17,6 +15,6 @@ class Exercitiu{
         const std::string &getNume() const;
         ~Exercitiu();
         friend std::ostream &operator<<(std::ostream &os, const Exercitiu &Exercitiu);
-        void nr_total_calorii_arse(float greutate);
+        void nr_total_calorii_arse(float greutate, int MET);
 };
 
