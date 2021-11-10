@@ -9,7 +9,7 @@ int main(){
     std::ifstream inFile1, inFile2;
     inFile1.open("MET.in");
     if(inFile1.fail()){
-        std::cerr << "Eroare la deschiderea fisierului!";
+        std::cerr << "Eroare la deschiderea fisierului! ";
         exit(1);
     }
     inFile2.open("NivelActivitateFizica.in");
