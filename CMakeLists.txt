@@ -4,4 +4,4 @@ project(repo_poo_project)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(repo_poo_project
-main.cpp Exercitiu.cpp Utilizator.cpp Nutritie.cpp)
+main.cpp Exercitiu.cpp Nutritie.cpp Tipuri_Exercitii.cpp Utilizator.cpp)

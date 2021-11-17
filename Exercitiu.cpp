@@ -1,22 +1,28 @@
 #include "Exercitiu.h"
 
-Exercitiu::Exercitiu(){}
+int Exercitiu::Id_max = 1;
 
-Exercitiu::Exercitiu(int nr_repetari, int nr_serii, int durata, const std::string &nume_exercitiu) : nr_repetari(nr_repetari) , nr_serii(nr_serii), durata(durata), nume_exercitiu(nume_exercitiu){
+Exercitiu::Exercitiu() : id(Id_max) {Id_max++;}
+
+Exercitiu::Exercitiu(int nr_repetari, int nr_serii, int durata, const std::string &nume_exercitiu) : nr_repetari(nr_repetari) , nr_serii(nr_serii), durata(durata), nume_exercitiu(nume_exercitiu) ,id(Id_max){
+            Id_max++;
             // Suntem in constructorul de initializare
         }
-Exercitiu::Exercitiu(const Exercitiu &copie){
+Exercitiu::Exercitiu(const Exercitiu &copie) : id(Id_max){
             this->nr_repetari=copie.nr_repetari;
             this->nr_serii=copie.nr_serii;
             this->durata=copie.durata;
             this->nume_exercitiu=copie.nume_exercitiu;
+            Id_max++;
             // Suntem in constructorul de copiere
         }
-Exercitiu& Exercitiu::operator=(const Exercitiu& copie){
+Exercitiu &Exercitiu::operator=(const Exercitiu& copie){
+        if(this != &copie){
             nr_repetari=copie.nr_repetari;
             nr_serii=copie.nr_serii;
             durata=copie.durata;
             nume_exercitiu=copie.nume_exercitiu;
+        }
             return *this;
             // Suntem in operatorul=
         }
@@ -28,7 +34,7 @@ Exercitiu::~Exercitiu(){
         }
 
 std::ostream &operator<<(std::ostream &os, const Exercitiu &Exercitiu) {
-        os << "Nume exercitiu: " << Exercitiu.nume_exercitiu << std::endl << "Numar de repetari: " << Exercitiu.nr_repetari << std::endl << "Numar de serii: " << Exercitiu.nr_serii << std::endl << "Durata in minute: " << Exercitiu.durata << std::endl;
+        Exercitiu.afis(os);
         // Suntem in operatorul <<
         return os;
         }
@@ -38,3 +44,18 @@ void Exercitiu::nr_total_calorii_arse(float greutate, int MET){
             std::cout<<"Valoarea introdusa: "<<MET<<std::endl;
             std:: cout << "Numarul de calorii arse cu acest exercitiu: " << durata * (MET*3.5*greutate)/200;
         }
+std::shared_ptr <Exercitiu> Exercitiu::clone() const {
+    return std::make_shared <Exercitiu>(*this);
+}
+ void Exercitiu::play_animatie() const{
+         
+}
+
+void Exercitiu::afis(std::ostream &os) const{
+    const auto &Exercitiu = *this;
+    os << "Numar exercitiu: " << id << std::endl << "Nume exercitiu: " << Exercitiu.nume_exercitiu << std::endl << "Numar de repetari: " << Exercitiu.nr_repetari << std::endl << "Numar de serii: " << Exercitiu.nr_serii << std::endl << "Durata in minute: " << Exercitiu.durata << std::endl;
+}
+
+int Exercitiu::getId_max(){
+    return Id_max;
+}
