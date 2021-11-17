@@ -11,7 +11,7 @@ class Exercitiu{
         static int Id_max;
         const int id;
     protected:
-        virtual void afis(std::ostream &os);
+        virtual void afis(std::ostream &os) const;
     public:
         Exercitiu();
         Exercitiu(int nr_repetari, int nr_serii, int durata, const std::string &nume_exercitiu);
@@ -23,7 +23,6 @@ class Exercitiu{
         virtual void play_animatie() const;
         virtual std::shared_ptr <Exercitiu> clone() const;
         virtual ~Exercitiu();
-        virtual void afis(std::ostream &os) const;
         static int getId_max();
 };
 

@@ -35,12 +35,6 @@ class Exercitiu_picioare: public Exercitiu{
          void afis(std::ostream &os) const override;
 };
 
-class Exercitiu_Mixt_MainisiPicioare: public Exercitiu{
-    private:
-
-    public:
-};
-
 class Exercitiu_spate: public Exercitiu{
     private:
         std::string grupe_de_muschi_spate[2]{"lombarii", "rhomboizii"};

@@ -3,5 +3,7 @@ project(repo_poo_project)
 
 set(CMAKE_CXX_STANDARD 14)
 
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+
 add_executable(repo_poo_project
 main.cpp Exercitiu.cpp Nutritie.cpp Tipuri_Exercitii.cpp Utilizator.cpp)
