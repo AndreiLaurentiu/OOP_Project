@@ -1,4 +1,5 @@
 #include "Erori_exercitiu.h"
+#include <string>
 
 eroare_exercitiu::eroare_exercitiu(const std::string &arg) : runtime_error("Eroare exercitiu: " + arg) {}
 
