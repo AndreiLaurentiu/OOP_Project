@@ -3,67 +3,67 @@
 #include "Exercitiu.h"
 
 class Exercitiu_abdomen: public Exercitiu{
-    private:
-        std::string grupe_de_muschi_abdomen[4]{"rectus abdominis", "oblici", "intercostali", "serratus"};
+    protected:
+        void afis(std::ostream &os) const override;
     public:
-        void play_animatie() const;
+        void play_animatie() const override;
         std::shared_ptr <Exercitiu> clone() const override;
-         Exercitiu_abdomen(int nr_repetari, int nr_serii, int durata, const std::string &nume_exercitiu);
+         Exercitiu_abdomen(int nr_repetari, int nr_serii, float durata, const std::string &nume_exercitiu, float pauza_intre_serii, std::string echipament_necesar, const std::string grupa_de_muschi_principala_antrenata, const std::string grupa_de_muschi_secundara_antrenata);
          ~Exercitiu_abdomen();
-         void afis(std::ostream &os) const override;
+         Exercitiu_abdomen();
 };
 
 class Exercitiu_maini: public Exercitiu{
-    private:
-        std::string grupe_de_muschi_maini[3]{"biceps", "triceps", "antebrat"};
+    protected:
+        void afis(std::ostream &os) const override;
     public:
-         void play_animatie() const;
+         void play_animatie() const override;
          std::shared_ptr <Exercitiu> clone() const override;
-         Exercitiu_maini(int nr_repetari, int nr_serii, int durata, const std::string &nume_exercitiu);
+         Exercitiu_maini(int nr_repetari, int nr_serii, float durata, const std::string &nume_exercitiu, float pauza_intre_serii, std::string echipament_necesar, const std::string grupa_de_muschi_principala_antrenata, const std::string grupa_de_muschi_secundara_antrenata);
          ~Exercitiu_maini();
-         void afis(std::ostream &os) const override;
+         Exercitiu_maini();
 };
 
 class Exercitiu_picioare: public Exercitiu{
-    private:
-        std::string grupe_de_muschi_picioare[3] {"cvadriceps", "gambe", "femur"};
+    protected:
+        void afis(std::ostream &os) const override;
     public:
-        void play_animatie() const;
+        void play_animatie() const override;
         std::shared_ptr <Exercitiu> clone() const override;
-        Exercitiu_picioare(int nr_repetari, int nr_serii, int durata, const std::string &nume_exercitiu);
+        Exercitiu_picioare(int nr_repetari, int nr_serii, float durata, const std::string &nume_exercitiu, float pauza_intre_serii, std::string echipament_necesar, const std::string grupa_de_muschi_principala_antrenata, const std::string grupa_de_muschi_secundara_antrenata);
          ~Exercitiu_picioare();
-         void afis(std::ostream &os) const override;
+         Exercitiu_picioare();
 };
 
 class Exercitiu_spate: public Exercitiu{
-    private:
-        std::string grupe_de_muschi_spate[2]{"lombarii", "rhomboizii"};
+     protected:
+        void afis(std::ostream &os) const override;
     public:
-         void play_animatie() const;
+         void play_animatie() const override;
          std::shared_ptr <Exercitiu> clone() const override;
-         Exercitiu_spate(int nr_repetari, int nr_serii, int durata, const std::string &nume_exercitiu);
+         Exercitiu_spate(int nr_repetari, int nr_serii, float durata, const std::string &nume_exercitiu, float pauza_intre_serii, std::string echipament_necesar, const std::string grupa_de_muschi_principala_antrenata, const std::string grupa_de_muschi_secundara_antrenata);
          ~Exercitiu_spate();
-         void afis(std::ostream &os) const override;
+         Exercitiu_spate();
 };
 
 class Exercitiu_umeri: public Exercitiu{
-    private:
-        std::string muschi_umeri = "deltoizi";
+     protected:
+        void afis(std::ostream &os) const override;
     public:
-         void play_animatie() const;
+         void play_animatie() const override;
          std::shared_ptr <Exercitiu> clone() const override;
-         Exercitiu_umeri(int nr_repetari, int nr_serii, int durata, const std::string &nume_exercitiu);
+         Exercitiu_umeri(int nr_repetari, int nr_serii, float durata, const std::string &nume_exercitiu, float pauza_intre_serii, std::string echipament_necesar, const std::string grupa_de_muschi_principala_antrenata, const std::string grupa_de_muschi_secundara_antrenata);
          ~Exercitiu_umeri();
-         void afis(std::ostream &os) const override;
+         Exercitiu_umeri();
 };
 
 class Exercitiu_piept: public Exercitiu{
-    private:
-        std::string grupe_de_muschi_piept[3]{"superiori", "mediani", "inferiori"};
+    protected:
+        void afis(std::ostream &os) const override;
     public:
-         void play_animatie() const;
+         void play_animatie() const override;
          std::shared_ptr <Exercitiu> clone() const override;
-         Exercitiu_piept(int nr_repetari, int nr_serii, int durata, const std::string &nume_exercitiu);
+         Exercitiu_piept(int nr_repetari, int nr_serii, float durata, const std::string &nume_exercitiu, float pauza_intre_serii, std::string echipament_necesar, const std::string grupa_de_muschi_principala_antrenata, const std::string grupa_de_muschi_secundara_antrenata);
          ~Exercitiu_piept();
-         void afis(std::ostream &os) const override;
+         Exercitiu_piept();
 };

@@ -1,4 +1,5 @@
 #include "Nutritie.h"
+#include <cmath>
 
 Nutritie::Nutritie(){}
 Nutritie::Nutritie(float carbohidrati, float grasimi, float fibre, float proteine, float apa) : carbohidrati(carbohidrati), grasimi(grasimi),  fibre(fibre), proteine(proteine), apa(apa){
@@ -16,7 +17,7 @@ void Nutritie::Macro_calculator(int amr){
     float proteine_=0.25*nr_calorii;
     std::cout<<"Valorile sunt exprimate in grame si se refera la cantitatile maxime recomandate zilnic. "<<std::endl;
     std::cout<<"Macronutrienti recomandati zilnic: "<<std::endl;
-    std::cout<<carbohidrati_/4<<"g carbohidrati"<<std::endl;
-    std::cout<<grasimi_/9<<"g grasimi"<<std::endl;
-    std::cout<<proteine_/4<<"g proteine"<<std::endl;
+    std::cout<<round(carbohidrati_/4)<<"g carbohidrati"<<std::endl;
+    std::cout<<round(grasimi_/9)<<"g grasimi"<<std::endl;
+    std::cout<<round(proteine_/4)<<"g proteine"<<std::endl;
 }

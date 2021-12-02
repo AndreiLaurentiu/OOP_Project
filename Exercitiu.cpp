@@ -2,10 +2,24 @@
 
 int Exercitiu::Id_max = 1;
 
-Exercitiu::Exercitiu() : id(Id_max) {Id_max++;}
+Exercitiu::Exercitiu() : id(Id_max) {Id_max++;
+    if(durata < 1)
+        throw exercitiu_prea_scurt();
+    if(nr_repetari < 5)
+        throw eroare_nr_repetari();
+    if(nr_serii < 2)
+        throw eroare_nr_serii();
+}
 
-Exercitiu::Exercitiu(int nr_repetari, int nr_serii, int durata, const std::string &nume_exercitiu) : nr_repetari(nr_repetari) , nr_serii(nr_serii), durata(durata), nume_exercitiu(nume_exercitiu) ,id(Id_max){
+Exercitiu::Exercitiu(int nr_repetari, int nr_serii, float durata, const std::string &nume_exercitiu, float pauza_intre_serii, const std::string &echipament_necesar, const std::string &grupa_de_muschi_principala_antrenata, const std::string &grupa_de_muschi_secundara_antrenata) : nr_repetari(nr_repetari) , nr_serii(nr_serii), durata(durata), nume_exercitiu(nume_exercitiu) , pauza_intre_serii(pauza_intre_serii), echipament_necesar(echipament_necesar),
+grupa_de_muschi_principala_antrenata(grupa_de_muschi_principala_antrenata), grupa_de_muschi_secundara_antrenata(grupa_de_muschi_secundara_antrenata), id(Id_max){
             Id_max++;
+            if(durata < 1)
+                throw exercitiu_prea_scurt();
+            if(nr_repetari < 5)
+                throw eroare_nr_repetari();
+            if(nr_serii < 2)
+                throw eroare_nr_serii();
             // Suntem in constructorul de initializare
         }
 Exercitiu::Exercitiu(const Exercitiu &copie) : id(Id_max){
@@ -13,7 +27,17 @@ Exercitiu::Exercitiu(const Exercitiu &copie) : id(Id_max){
             this->nr_serii=copie.nr_serii;
             this->durata=copie.durata;
             this->nume_exercitiu=copie.nume_exercitiu;
+            this->pauza_intre_serii=copie.pauza_intre_serii;
+            this->echipament_necesar=copie.echipament_necesar;
+            this->grupa_de_muschi_principala_antrenata=copie.grupa_de_muschi_principala_antrenata;
+            this->grupa_de_muschi_secundara_antrenata=copie.grupa_de_muschi_secundara_antrenata;
             Id_max++;
+            if(durata < 1)
+                throw exercitiu_prea_scurt();
+            if(nr_repetari < 5)
+                throw eroare_nr_repetari();
+            if(nr_serii < 2)
+                throw eroare_nr_serii();
             // Suntem in constructorul de copiere
         }
 Exercitiu &Exercitiu::operator=(const Exercitiu& copie){
@@ -22,6 +46,10 @@ Exercitiu &Exercitiu::operator=(const Exercitiu& copie){
             nr_serii=copie.nr_serii;
             durata=copie.durata;
             nume_exercitiu=copie.nume_exercitiu;
+            grupa_de_muschi_principala_antrenata=copie.grupa_de_muschi_principala_antrenata;
+            grupa_de_muschi_secundara_antrenata=copie.grupa_de_muschi_secundara_antrenata;
+            pauza_intre_serii=copie.pauza_intre_serii;
+            echipament_necesar=copie.echipament_necesar;
         }
             return *this;
             // Suntem in operatorul=
@@ -42,20 +70,19 @@ std::ostream &operator<<(std::ostream &os, const Exercitiu &Exercitiu) {
 void Exercitiu::nr_total_calorii_arse(float greutate, int MET){
             std::cout<<"Alegerea MET: Exercitiu usor - sub 3" << std::endl << "Exercitiu mediu - intre 3 si 6" << std::endl << "Exercitiu intens - peste 6" <<std::endl;
             std::cout<<"Valoarea introdusa: "<<MET<<std::endl;
-            std:: cout << "Numarul de calorii arse cu acest exercitiu: " << durata * (MET*3.5*greutate)/200;
+            std:: cout << "Numarul de calorii arse cu acest exercitiu: " << round(durata * (MET*3.5*greutate)/200) << std::endl;
         }
-std::shared_ptr <Exercitiu> Exercitiu::clone() const {
-    return std::make_shared <Exercitiu>(*this);
-}
- void Exercitiu::play_animatie() const{
-         
-}
 
 void Exercitiu::afis(std::ostream &os) const{
     const auto &Exercitiu = *this;
-    os << "Numar exercitiu: " << id << std::endl << "Nume exercitiu: " << Exercitiu.nume_exercitiu << std::endl << "Numar de repetari: " << Exercitiu.nr_repetari << std::endl << "Numar de serii: " << Exercitiu.nr_serii << std::endl << "Durata in minute: " << Exercitiu.durata << std::endl;
+    os << "Numar exercitiu: " << id << std::endl << "Nume exercitiu: " << Exercitiu.nume_exercitiu << std::endl << "Numar de repetari: " << Exercitiu.nr_repetari << std::endl << "Numar de serii: " << Exercitiu.nr_serii << std::endl << "Durata in minute: " << Exercitiu.durata << std::endl << "Pauza intre serii: " << Exercitiu.pauza_intre_serii << std::endl <<"Echipament necesar: " << Exercitiu.echipament_necesar << std::endl << "Grupa de muschi principala antrenata: " << Exercitiu.grupa_de_muschi_principala_antrenata << std::endl <<
+    "Grupa de muschi principala antrenata: " << Exercitiu.grupa_de_muschi_secundara_antrenata << std::endl;
 }
 
 int Exercitiu::getId_max(){
     return Id_max;
+}
+
+void Exercitiu::setId_max(const int x){
+    Id_max = x;
 }

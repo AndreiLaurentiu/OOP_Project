@@ -40,7 +40,7 @@ std::ostream &operator<<(std::ostream &os, const Utilizator &Utilizator) {
 void Utilizator::adauga_exercitiu(const Exercitiu &exercitiu_){
         exercitii.push_back(exercitiu_.clone());
     }
-void Utilizator::scoate_exercitiu(Exercitiu exercitiul){
+void Utilizator::scoate_exercitiu(){
         exercitii.pop_back();
     }
 float Utilizator::getGreutate() {
@@ -59,53 +59,44 @@ void Utilizator::AMR_afisare(float activitate){
         std::cout<<"Valoarea introdusa: "<<activitate<<std::endl;
         std::cout<<"Numarul zilnic de calorii necesare pentru mentinerea greutatii actuale: ";
         if(sex == "masculin")
-            std::cout<<(10*greutate + 6.25*inaltime - 5*varsta + 5)*activitate<<std::endl;
+            std::cout<<round((10*greutate + 6.25*inaltime - 5*varsta + 5)*activitate)<<std::endl;
         else
-            std::cout<<(10*greutate + 4.7*inaltime - 5*varsta -161)*activitate<<std::endl;
+            std::cout<<round((10*greutate + 4.7*inaltime - 5*varsta -161)*activitate)<<std::endl;
     }
 void Utilizator::IMC(){
         float IMC_result = greutate*std::pow(10, 4)/std::pow(inaltime, 2);
-        std::cout<<"Indicele de masa corporala: " << IMC_result<<std::endl;
-        switch (1){
-            case 1: 
-                if(IMC_result < 16.0){
-                    std::cout<<"Subnutrit";
-                    break;
-                }
-            case 2:
-                if(IMC_result < 18.5){
-                    std::cout<<"Subponderal"<<std::endl;
-                    break;
-                }
-            case 3:
+        std::cout<< "Indicele de masa corporala: " << round(IMC_result) << std::endl;
+            if(IMC_result < 16.0){
+                std::cout<<"Subnutrit";
+            return; 
+            }
+            if(IMC_result < 18.5){
+                std::cout<<"Subponderal"<<std::endl;
+                    return;
+            }
                 if(IMC_result < 25){
                     std::cout<<"Normal"<<std::endl;
-                    break;
+                    return;
                 }
-            case 4:
                 if(IMC_result < 30){
                     std::cout<<"Supraponderal"<<std::endl;
-                    break;
+                    return;
                 }
-            case 5:
                 if(IMC_result < 35){
                     std::cout<<"Obezitate clasa I"<<std::endl;
-                    break;
+                    return;
                 }
-            case 6:
                 if(IMC_result < 40){
                     std::cout<<"Obezitate clasa II"<<std::endl;
-                    break;
+                    return;
                 }
-            case 7:
                 if(IMC_result > 40){
                     std::cout<<"Obezitate clasa III"<<std::endl;
-                    break;
+                    return;
                 }
 
                     
         }
-    }
 void Utilizator::start_exercitii(){
     for(const auto& Exercitiu : exercitii){
         std::cout << "Exercitiune in desfasurare: " << Exercitiu->getNume() << std::endl;

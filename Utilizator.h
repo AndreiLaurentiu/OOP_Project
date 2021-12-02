@@ -22,7 +22,7 @@ class Utilizator{
     void swap(Utilizator &, Utilizator &);
     friend std::ostream &operator<<(std::ostream &os, const Utilizator &Utilizator);
     void adauga_exercitiu(const Exercitiu &exercitiu);
-    void scoate_exercitiu(Exercitiu exercitiul);
+    void scoate_exercitiu();
     float getGreutate();
     int AMR_valoare(float activitate);
     void AMR_afisare(float activitate);
