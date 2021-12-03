@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include "Utilizator.h"
+#include "Meniu.h"
 
 int main(){
     std::ifstream inFile1, inFile2;
@@ -17,6 +18,7 @@ int main(){
         std::cerr << "Eroare la deschiderea fisierului!";
         exit(1);
     }
+
     //TODO: implementare animatii si functionalitati specifice pt fiecare subclasa exercitiu + testat in main
     //In bucata de cod comentata sunt doar verificarile pentru functionalitatile de baza si specifice TEMA 1.
     /*
@@ -55,6 +57,60 @@ int main(){
     a.nr_total_calorii_arse(e.getGreutate(), MET); // verificare metoda nr_calorii_arse 
     */
     
+
+    const int latime_fereastra = 800; 
+    const int inaltime_fereastra = 600;
+    sf::RenderWindow window(sf::VideoMode(latime_fereastra, inaltime_fereastra), "Aplicatie Fitness v0.4", sf::Style::Default);
+    window.setFramerateLimit(60);
+    Meniu meniu(window.getSize().x, window.getSize().y);
+    while(window.isOpen()){
+        sf::Event event;
+        while (window.pollEvent(event)){
+            switch (event.type)
+            {
+            case sf::Event::KeyReleased:
+                switch(event.key.code){
+                    case sf::Keyboard::Up:
+                        meniu.MoveUp();
+                        break;
+                    case sf::Keyboard::Down:
+                        meniu.MoveDown();
+                        break;
+                    case sf::Keyboard::Return:
+                    switch(meniu.GetPressedItem()){
+                        case 0:
+                            std::cout << "Primul buton a fost apasat." << std::endl;
+                            break;
+                        case 1:
+                            std::cout << "Al doilea buton a fost apasat." << std::endl;
+                            break;
+                        case 2:
+                            std::cout << "Al treilea buton a fost apasat." << std::endl;
+                            break;
+                        case 3:
+                            window.close();
+                            break;
+                        default:
+                            break;
+                    }
+                    default:
+                        break;
+
+                    
+                }
+                break;
+            case sf::Event::Closed:
+                window.close();
+                break;
+            default:
+                break;
+            }
+        }
+        window.clear(sf::Color::Cyan);
+        meniu.draw(window);
+        window.display();
+    }
+
     std::string grupe_de_muschi_abdomen[2]{"intreg abdomenul", "abdomenul inferior"};
     std::string grupe_de_muschi_maini[3]{"biceps", "triceps", "antebrat"};
     std::string grupe_de_muschi_picioare[3] {"cvadriceps", "gambe", "femur"};
