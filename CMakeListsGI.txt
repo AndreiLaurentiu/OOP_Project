@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.15)
-project(testSFML)
+cmake_minimum_required(VERSION 3.16)
+project(repo_poo_project)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 if(MSVC)
     add_compile_options("/W4")
 else()
@@ -21,8 +21,9 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(SFML)
 
+set(SOURCES main.cpp Exercitiu.cpp Nutritie.cpp Tipuri_Exercitii.cpp Utilizator.cpp Erori_exercitiu.cpp Meniu.cpp)
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE ${SFML_SOURCE_DIR}/include)
 target_link_directories(${PROJECT_NAME} PRIVATE ${SFML_BINARY_DIR}/lib)
 target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-window sfml-system)

@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 #set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR "/usr/lib/x86_64-linux-gnu/cmake")
-find_package(SFML 2.5.1 COMPONENTS graphics audio window network system REQUIRED)
+find_package(SFML 2.5 COMPONENTS graphics audio window network system REQUIRED)
 set(sfml-libs
     sfml-graphics
     sfml-network
