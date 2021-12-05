@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     env:
-      BUILD_TYPE: release
+      BUILD_TYPE: Release
     strategy:
       fail-fast: false
       matrix:
@@ -58,7 +58,7 @@ jobs:
         working-directory: ${{ github.workspace }}/build
         shell: bash
         # Execute the build.  You can specify a specific target with "--target <NAME>"
-        run: sudo cmake --build . --config $BUILD_TYPE -j6
+        run: cmake --build . --config $BUILD_TYPE -j6
 
       - name: Install
         # working-directory: ${{ github.workspace }}/build
