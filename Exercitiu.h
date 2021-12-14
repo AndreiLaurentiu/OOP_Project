@@ -16,6 +16,7 @@ class Exercitiu{
         std::string grupa_de_muschi_secundara_antrenata;
         static int Id_max;
         const int id;
+        void validare_obiect(float durata = 1.0, int nr_repetari = 5, int nr_serii = 2);
     protected:
         virtual void afis(std::ostream &os) const;
     public:

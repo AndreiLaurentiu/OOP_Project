@@ -2,7 +2,7 @@
 
 int Exercitiu::Id_max = 1;
 
-Exercitiu::Exercitiu() : id(Id_max) {Id_max++;
+void Exercitiu::validare_obiect(float durata, int nr_repetari, int nr_serii){
     if(durata < 1)
         throw exercitiu_prea_scurt();
     if(nr_repetari < 5)
@@ -11,15 +11,14 @@ Exercitiu::Exercitiu() : id(Id_max) {Id_max++;
         throw eroare_nr_serii();
 }
 
+Exercitiu::Exercitiu() : id(Id_max) {Id_max++;
+    validare_obiect();
+}
+
 Exercitiu::Exercitiu(int nr_repetari, int nr_serii, float durata, const std::string &nume_exercitiu, float pauza_intre_serii, const std::string &echipament_necesar, const std::string &grupa_de_muschi_principala_antrenata, const std::string &grupa_de_muschi_secundara_antrenata) : nr_repetari(nr_repetari) , nr_serii(nr_serii), durata(durata), nume_exercitiu(nume_exercitiu) , pauza_intre_serii(pauza_intre_serii), echipament_necesar(echipament_necesar),
 grupa_de_muschi_principala_antrenata(grupa_de_muschi_principala_antrenata), grupa_de_muschi_secundara_antrenata(grupa_de_muschi_secundara_antrenata), id(Id_max){
             Id_max++;
-            if(durata < 1)
-                throw exercitiu_prea_scurt();
-            if(nr_repetari < 5)
-                throw eroare_nr_repetari();
-            if(nr_serii < 2)
-                throw eroare_nr_serii();
+            validare_obiect(durata, nr_repetari, nr_serii);
             // Suntem in constructorul de initializare
         }
 Exercitiu::Exercitiu(const Exercitiu &copie) : id(Id_max){
@@ -32,12 +31,7 @@ Exercitiu::Exercitiu(const Exercitiu &copie) : id(Id_max){
             this->grupa_de_muschi_principala_antrenata=copie.grupa_de_muschi_principala_antrenata;
             this->grupa_de_muschi_secundara_antrenata=copie.grupa_de_muschi_secundara_antrenata;
             Id_max++;
-            if(durata < 1)
-                throw exercitiu_prea_scurt();
-            if(nr_repetari < 5)
-                throw eroare_nr_repetari();
-            if(nr_serii < 2)
-                throw eroare_nr_serii();
+            validare_obiect(durata, nr_repetari, nr_serii);
             // Suntem in constructorul de copiere
         }
 Exercitiu &Exercitiu::operator=(const Exercitiu& copie){
