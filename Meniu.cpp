@@ -1,9 +1,25 @@
 #include "Meniu.h"
+#include <string>
+
+void Meniu::item_define(int i, sf::Color color, std::string string, int place, float width, float height){
+    text[i].setFont(font);
+    text[i].setFillColor(color);
+    text[i].setString(string);
+    text[i].setCharacterSize(20);
+    text[i].setStyle(sf::Text::Style::Bold);
+    text[i].setPosition(sf::Vector2f(width / 2 - 120, height / (MAX_NUMBER_OF_ITEMS + 1) * place));
+}
 
 Meniu::Meniu(float width, float height){
     if(!font.loadFromFile("arial.ttf")){
         //throw "Nu a fost gasit font-ul bun!";
     }
+    item_define(0, sf::Color::Red, "Porneste un antrenament", 1,  width, height);
+    item_define(1, sf::Color::Yellow, "Creeaza un nou antrenament", 2,  width,  height);
+    item_define(2, sf::Color::Yellow, "Verificare valori nutritionale", 3, width,  height);
+    item_define(3, sf::Color::Yellow, "Seteaza datele personale", 4,  width, height);
+    item_define(4, sf::Color::Yellow, "Inchidere", 5,  width, height);
+    /*
     text[0].setFont(font);
     text[0].setFillColor(sf::Color::Red);
     text[0].setString("Porneste un antrenament");
@@ -32,7 +48,7 @@ Meniu::Meniu(float width, float height){
     text[3].setCharacterSize(20);
     text[3].setStyle(sf::Text::Style::Bold);
     text[3].setPosition(sf::Vector2f(width / 2 - 120, height / (MAX_NUMBER_OF_ITEMS + 1) * 4));
-    
+    */
     item_selectat = 0;
 
 }

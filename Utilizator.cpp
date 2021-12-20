@@ -3,12 +3,12 @@
 #include <vector>
 
 Utilizator::Utilizator(int varsta, float greutate, float inaltime, const std::string &sex, const std::string &nume) : varsta(varsta), greutate(greutate), inaltime(inaltime), sex(sex), nume(nume) {}
-Utilizator::Utilizator(int varsta, float greutate, float inaltime, const std::string &sex, const std::string &nume, const Nutritie &nutritie, const std::vector <std::shared_ptr <Exercitiu>>  &exercitii) : varsta(varsta), greutate(greutate), inaltime(inaltime), sex(sex), nume(nume), nutritie(nutritie),  exercitii(exercitii){
+Utilizator::Utilizator(int varsta, float greutate, float inaltime, const std::string &sex, const std::string &nume, const Nutritie &nutritie, const std::vector <std::shared_ptr <Antrenament>>  &antrenamente) : varsta(varsta), greutate(greutate), inaltime(inaltime), sex(sex), nume(nume), nutritie(nutritie),  antrenamente(antrenamente){
         // Suntem in constructorul de initializare
     }
 Utilizator::Utilizator(const Utilizator& copie) : varsta(copie.varsta), greutate(copie.greutate), inaltime(copie.inaltime), sex(copie.sex), nume(copie.nume), nutritie(copie.nutritie){
-    for(const auto exercitiu : copie.exercitii)
-        exercitii.push_back(exercitiu->clone());
+    for(const auto antrenament : copie.antrenamente)
+        antrenamente.push_back(antrenament->clone());
 }
 Utilizator &Utilizator::operator=(Utilizator copie){
     swap(*this, copie);
@@ -16,7 +16,7 @@ Utilizator &Utilizator::operator=(Utilizator copie){
 }
 void Utilizator::swap(Utilizator &a1, Utilizator &a2) {
     using std::swap;
-    swap(a1.exercitii, a2.exercitii);
+    swap(a1.antrenamente, a2.antrenamente);
     swap(a1.varsta, a2.varsta);
     swap(a1.greutate, a2.greutate);
     swap(a1.inaltime, a2.inaltime);
@@ -31,17 +31,17 @@ std::ostream &operator<<(std::ostream &os, const Utilizator &Utilizator) {
         os << "Greutate: " << Utilizator.greutate << std::endl;
         os << "Inaltime: " << Utilizator.inaltime << std::endl;
         os << "Valori nutritionale individuale pentru o zi: " << std::endl << Utilizator.nutritie;
-        os << "Exercitii fizice selectate pentru azi: "<< std::endl;
-        for(const auto & Exercitiu : Utilizator.exercitii)
-            os << *Exercitiu;
+        os << "Antrenamentele tale: "<< std::endl;
+        for(const auto & Antrenament : Utilizator.antrenamente)
+            os << *Antrenament;
         return os;
          // Suntem in operatorul <<
         }
-void Utilizator::adauga_exercitiu(const Exercitiu &exercitiu_){
-        exercitii.push_back(exercitiu_.clone());
+void Utilizator::adauga_antrenament(const Antrenament &antrenament_){
+        antrenamente.push_back(antrenament_.clone());
     }
-void Utilizator::scoate_exercitiu(){
-        exercitii.pop_back();
+void Utilizator::scoate_antrenament(){
+        antrenamente.pop_back();
     }
 float Utilizator::getGreutate() {
         return greutate;
@@ -97,10 +97,3 @@ void Utilizator::IMC(){
 
                     
         }
-void Utilizator::start_exercitii(){
-    for(const auto& Exercitiu : exercitii){
-        std::cout << "Exercitiune in desfasurare: " << Exercitiu->getNume() << std::endl;
-        Exercitiu->play_animatie();
-    }
-
-}

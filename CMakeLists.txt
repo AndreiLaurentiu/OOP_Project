@@ -13,7 +13,7 @@ set(sfml-libs
     sfml-window
     sfml-system
   )
-set(SOURCES main.cpp Exercitiu.cpp Nutritie.cpp Tipuri_Exercitii.cpp Utilizator.cpp Erori_exercitiu.cpp Meniu.cpp)
+set(SOURCES main.cpp Exercitiu.cpp Nutritie.cpp Tipuri_Exercitii.cpp Utilizator.cpp Erori_exercitiu.cpp Meniu.cpp Antrenament.cpp)
 
 add_executable(${PROJECT_NAME}
 ${SOURCES})

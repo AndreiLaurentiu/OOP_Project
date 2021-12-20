@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include "Utilizator.h"
+#include "Antrenament.h"
 #include "Meniu.h"
 
 int main(){
@@ -88,6 +89,9 @@ int main(){
                             std::cout << "Al treilea buton a fost apasat." << std::endl;
                             break;
                         case 3:
+                            std::cout << "Al patrulea buton a fost apasat." << std::endl;
+                            break;
+                        case 4:
                             window.close();
                             break;
                         default:
@@ -184,7 +188,7 @@ int main(){
         Exercitiu_piept e55 = Exercitiu_piept(10, 3, 2.5, "Fluturari cu gantere pentru piept", 30, "gantere si banca orizontala", "piept", "-");
         Exercitiu::setId_max(-9);
         exercitii_maini.insert(exercitii_maini.begin(), {e1, e2, e3, e4, e5, e6, e7, e8, e9, e10});
-        //Exercitiu::setId_max(1);
+        Exercitiu::setId_max(1);
         exercitii_spate.insert(exercitii_spate.end(), {e11, e12, e13, e14, e15, e16, e17, e18, e19, e20});
         Exercitiu::setId_max(10);
         exercitii_picioare.insert(exercitii_picioare.end(), {e21, e22, e23, e24, e25, e26, e27, e28, e29, e30, e31});
@@ -207,15 +211,21 @@ int main(){
         std::cout << e_ex1; //testam cc-ul
         e_ex2 = exercitii_maini[0];
         std::cout << e_ex2; //testam operatorul=
-
         std::vector< std::shared_ptr <Exercitiu>> exercitii;
+        std::vector< std::shared_ptr <Antrenament>> antrenamente;
         Nutritie x(300.0, 30.0,40.0 ,50.0, 2.0);
         std::cout << x; //testam operatorul << pt clasa Nutritie
-
-        Utilizator u1(20, 90.0, 185.0, "masculin", "Andrei", x, exercitii);
-        u1.adauga_exercitiu(exercitii_maini[0]); //testez functia de add
+        Antrenament a1("Pentru marti", exercitii);
+        a1.adauga_exercitiu(exercitii_maini[0]); //testez functia de add exercitiu
+        std::shared_ptr<Antrenament> sharedptr = std::make_shared <Antrenament>(a1);
+        antrenamente.push_back(sharedptr);
+        Utilizator u1(20, 90.0, 185.0, "masculin", "Andrei", x, antrenamente);
+        u1.adauga_antrenament(a1); //testez functia de add antrenament
+        std::cout<< a1;
         std::cout<< u1;
-        u1.scoate_exercitiu();
+        a1.scoate_exercitiu();
+        std::cout<< a1;
+        u1.scoate_antrenament();
         std::cout << u1; //testam operatorul <<
         Utilizator u2 = u1;
         float activitate;
@@ -226,8 +236,9 @@ int main(){
         int MET;
         inFile1>>MET;
         exercitii_maini[0].nr_total_calorii_arse(u1.getGreutate(), MET); // verificare metoda nr_calorii_arse 
-        u1.adauga_exercitiu(exercitii_picioare[0]);
-        u1.start_exercitii();
+        a1.adauga_exercitiu(exercitii_picioare[0]);
+        a1.start_exercitii();
+         
     }
     catch(eroare_exercitiu &eroare){
         std::cout << eroare.what() << std::endl;
