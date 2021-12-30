@@ -1,5 +1,6 @@
 #include "Antrenament.h"
-
+#include <chrono>
+#include <ctime>  
 Antrenament::Antrenament(std::string nume_antrenament, std::vector<std::shared_ptr<Exercitiu>> &exercitii): nume_antrenament(nume_antrenament), exercitii(exercitii){}
 
 Antrenament &Antrenament::operator=(Antrenament copie){
@@ -44,3 +45,16 @@ std::ostream &operator<<(std::ostream &os, const Antrenament &Antrenament) {
 std::shared_ptr <Antrenament> Antrenament::clone() const {
     return std::make_shared <Antrenament>(*this);
 }
+/*
+void Antrenament::start_exercitii(const Antrenament& Antrenament){
+    for(auto& Exercitiu: Antrenament.exercitii){
+        auto start = std::chrono::system_clock::now();
+        std::chrono::duration<float> elapsed_seconds;
+        while(Exercitiu->getDurata() <= elapsed_seconds){
+            auto end = std::chrono::system_clock::now();
+            elapsed_seconds = end-start;
+        }
+
+    }
+}
+*/

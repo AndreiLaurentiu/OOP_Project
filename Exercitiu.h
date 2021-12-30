@@ -32,5 +32,6 @@ class Exercitiu{
         virtual ~Exercitiu();
         static int getId_max();
         static void setId_max(const int);
+        float getDurata();
 };
 

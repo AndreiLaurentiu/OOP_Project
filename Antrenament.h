@@ -1,5 +1,4 @@
 #pragma once
-#include "Exercitiu.h"
 #include <string>
 #include <memory>
 #include <vector>
@@ -19,4 +18,5 @@ class Antrenament{
     virtual std::shared_ptr <Antrenament> clone() const;
     Antrenament &operator=(Antrenament copie);
     Antrenament(const Antrenament& Antrenament);
+    void start_exercitii(const Antrenament& Antrenament);
 };

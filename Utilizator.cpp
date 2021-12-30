@@ -2,28 +2,8 @@
 #include <cmath>
 #include <vector>
 
-Utilizator::Utilizator(int varsta, float greutate, float inaltime, const std::string &sex, const std::string &nume) : varsta(varsta), greutate(greutate), inaltime(inaltime), sex(sex), nume(nume) {}
-Utilizator::Utilizator(int varsta, float greutate, float inaltime, const std::string &sex, const std::string &nume, const Nutritie &nutritie, const std::vector <std::shared_ptr <Antrenament>>  &antrenamente) : varsta(varsta), greutate(greutate), inaltime(inaltime), sex(sex), nume(nume), nutritie(nutritie),  antrenamente(antrenamente){
-        // Suntem in constructorul de initializare
-    }
-Utilizator::Utilizator(const Utilizator& copie) : varsta(copie.varsta), greutate(copie.greutate), inaltime(copie.inaltime), sex(copie.sex), nume(copie.nume), nutritie(copie.nutritie){
-    for(const auto antrenament : copie.antrenamente)
-        antrenamente.push_back(antrenament->clone());
-}
-Utilizator &Utilizator::operator=(Utilizator copie){
-    swap(*this, copie);
-    return *this;
-}
-void Utilizator::swap(Utilizator &a1, Utilizator &a2) {
-    using std::swap;
-    swap(a1.antrenamente, a2.antrenamente);
-    swap(a1.varsta, a2.varsta);
-    swap(a1.greutate, a2.greutate);
-    swap(a1.inaltime, a2.inaltime);
-    swap(a1.sex, a2.sex);
-    swap(a1.nume, a2.nume);
-    swap(a1.nutritie, a2.nutritie);
-}
+Utilizator* Utilizator::ut = nullptr;
+
 std::ostream &operator<<(std::ostream &os, const Utilizator &Utilizator) {
         os << "Nume utilizator: " << Utilizator.nume <<std::endl;
         os << "Sex: " << Utilizator.sex << std::endl;
@@ -97,3 +77,21 @@ void Utilizator::IMC(){
 
                     
         }
+void Utilizator::setVarsta(int v){
+    varsta = v;
+}
+void Utilizator::setGreutate(float g){
+     greutate = g;
+}
+void Utilizator::setInaltime(float i){
+     inaltime = i;
+}
+void Utilizator::setSex(std::string s){
+     sex = s;
+}
+void Utilizator::setNume(std::string n){
+     nume = nume;
+}
+void Utilizator::setNutritie(Nutritie<float> N){
+    nutritie = N;
+}

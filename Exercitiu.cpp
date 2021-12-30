@@ -80,3 +80,7 @@ int Exercitiu::getId_max(){
 void Exercitiu::setId_max(const int x){
     Id_max = x;
 }
+float Exercitiu::getDurata(){
+    return durata;
+    
+}

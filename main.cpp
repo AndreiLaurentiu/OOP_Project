@@ -5,7 +5,13 @@
 #include <fstream>
 #include "Utilizator.h"
 #include "Antrenament.h"
+#include "Exercitiu_factory.h"
 #include "Meniu.h"
+#include "Fereastra_1.h"
+#include "Fereastra_2.h"
+#include "Fereastra_3.h"
+#include "Fereastra_4.h"
+#include "Button.h"
 
 int main(){
     std::ifstream inFile1, inFile2;
@@ -18,101 +24,6 @@ int main(){
     if(inFile2.fail()){
         std::cerr << "Eroare la deschiderea fisierului!";
         exit(1);
-    }
-
-    //TODO: implementare animatii si functionalitati specifice pt fiecare subclasa exercitiu + testat in main
-    //In bucata de cod comentata sunt doar verificarile pentru functionalitatile de baza si specifice TEMA 1.
-    /*
-    Exercitiu d(15, 5, 15, "Genoflexiuni");
-    Exercitiu f(4, 4, 2, "Rotari de cap");
-    Exercitiu b(20, 3, 15, "Abdomene");
-    std::cout << a; //testam operatorul <<
-    Exercitiu h=d, c;
-    std::cout << Exercitiu::getId_max();
-    std::cout<<h; //testam cc-ul
-    c = d;
-    std::cout << c; //testam operatorul=
-    std::vector< std::shared_ptr <Exercitiu>> exercitii;
-    Nutritie x(300.0, 30.0,40.0 ,50.0, 2.0);
-    std::cout << x; //testam operatorul <<
-    Utilizator u1(20, 90.0, 185.0, "masculin", "Andrei", x, exercitii);
-    u1.adauga_exercitiu(b); //testez functia de add
-    std::cout<< u1
-    u1.scoate_exercitiu(b);
-    std::cout << u1; //testam operatorul <<
-    Utilizator u2 = u1;
-    u1.scoate_exercitiu(b);
-    std::cout<< u1 << u2; //testam cc-ul, operatorul << si functia scoate_exercitiu
-    Exercitiu_maini e1(15, 4, 10, "Forfecari");
-    u1.adauga_exercitiu(e1);
-    std::cout<< u1;
-    u1.scoate_exercitiu(e1);
-    std::cout<< u1;
-    float activitate;
-    inFile2>>activitate;
-    e.AMR_afisare(activitate); //verificare metoda AMR_afisare
-    x.Macro_calculator(e.AMR_valoare(activitate));
-    e.IMC(); //verificare metoda IMC
-    int MET;
-    inFile1>>MET;
-    a.nr_total_calorii_arse(e.getGreutate(), MET); // verificare metoda nr_calorii_arse 
-    */
-    
-
-    const int latime_fereastra = 800; 
-    const int inaltime_fereastra = 600;
-    sf::RenderWindow window(sf::VideoMode(latime_fereastra, inaltime_fereastra), "Aplicatie Fitness v0.4", sf::Style::Default);
-    window.setFramerateLimit(60);
-    Meniu meniu(window.getSize().x, window.getSize().y);
-    while(window.isOpen()){
-        sf::Event event;
-        while (window.pollEvent(event)){
-            switch (event.type)
-            {
-            case sf::Event::KeyReleased:
-                switch(event.key.code){
-                    case sf::Keyboard::Up:
-                        meniu.MoveUp();
-                        break;
-                    case sf::Keyboard::Down:
-                        meniu.MoveDown();
-                        break;
-                    case sf::Keyboard::Return:
-                    switch(meniu.GetPressedItem()){
-                        case 0:
-                            std::cout << "Primul buton a fost apasat." << std::endl;
-                            break;
-                        case 1:
-                            std::cout << "Al doilea buton a fost apasat." << std::endl;
-                            break;
-                        case 2:
-                            std::cout << "Al treilea buton a fost apasat." << std::endl;
-                            break;
-                        case 3:
-                            std::cout << "Al patrulea buton a fost apasat." << std::endl;
-                            break;
-                        case 4:
-                            window.close();
-                            break;
-                        default:
-                            break;
-                    }
-                    default:
-                        break;
-
-                    
-                }
-                break;
-            case sf::Event::Closed:
-                window.close();
-                break;
-            default:
-                break;
-            }
-        }
-        window.clear(sf::Color::Cyan);
-        meniu.draw(window);
-        window.display();
     }
 
     std::string grupe_de_muschi_abdomen[2]{"intreg abdomenul", "abdomenul inferior"};
@@ -198,6 +109,18 @@ int main(){
         exercitii_umeri.insert(exercitii_umeri.end(), {e42, e43, e44, e45, e46, e47, e48});
         Exercitiu::setId_max(42);
         exercitii_piept.insert(exercitii_piept.end(), {e49, e50, e51, e52, e53, e54, e55});
+        Exercitiu_abdomen ef1= Exercitiu_abdomen_factory::ex_abdomen_scurt();
+        Exercitiu_abdomen ef2= Exercitiu_abdomen_factory::ex_abdomen_lung();
+        Exercitiu_maini ef3= Exercitiu_maini_factory::ex_maini_scurt();
+        Exercitiu_maini ef4= Exercitiu_maini_factory::ex_maini_lung();
+        Exercitiu_picioare ef5= Exercitiu_picioare_factory::ex_picioare_scurt();
+        Exercitiu_picioare ef6= Exercitiu_picioare_factory::ex_picioare_lung();
+        Exercitiu_spate ef7= Exercitiu_spate_factory::ex_spate_scurt();
+        Exercitiu_spate ef8= Exercitiu_spate_factory::ex_spate_lung();
+        Exercitiu_umeri ef9= Exercitiu_umeri_factory::ex_umeri_scurt();
+        Exercitiu_umeri ef10= Exercitiu_umeri_factory::ex_umeri_lung();
+        Exercitiu_piept ef11= Exercitiu_piept_factory::ex_piept_scurt();
+        Exercitiu_piept ef12= Exercitiu_piept_factory::ex_piept_lung();
         //Testez operatorul<< si functia virtuala specifica + verific sa fie corect indexate exercitiile
         std::cout << exercitii_maini[0];
         std::cout << exercitii_spate[0];
@@ -213,32 +136,238 @@ int main(){
         std::cout << e_ex2; //testam operatorul=
         std::vector< std::shared_ptr <Exercitiu>> exercitii;
         std::vector< std::shared_ptr <Antrenament>> antrenamente;
-        Nutritie x(300.0, 30.0,40.0 ,50.0, 2.0);
+        Nutritie<float> x(300.0, 30.0,40.0 ,50.0, 2.0);
         std::cout << x; //testam operatorul << pt clasa Nutritie
         Antrenament a1("Pentru marti", exercitii);
         a1.adauga_exercitiu(exercitii_maini[0]); //testez functia de add exercitiu
         std::shared_ptr<Antrenament> sharedptr = std::make_shared <Antrenament>(a1);
         antrenamente.push_back(sharedptr);
-        Utilizator u1(20, 90.0, 185.0, "masculin", "Andrei", x, antrenamente);
-        u1.adauga_antrenament(a1); //testez functia de add antrenament
+        auto u1 = Utilizator::get_ut(); //initializare singletone
+        (*u1).setGreutate(80);
+        (*u1).setInaltime(185);
+        (*u1).setNume("Andrei");
+        (*u1).setNutritie(x);
+        (*u1).setSex("masculin");
+        (*u1).setVarsta(20);
+        (*u1).adauga_antrenament(a1); //testez functia de add antrenament
         std::cout<< a1;
-        std::cout<< u1;
+        std::cout<< (*u1);
         a1.scoate_exercitiu();
         std::cout<< a1;
-        u1.scoate_antrenament();
+        (*u1).scoate_antrenament();
         std::cout << u1; //testam operatorul <<
-        Utilizator u2 = u1;
         float activitate;
         inFile2>>activitate;
-        u1.AMR_afisare(activitate); //verificare metoda AMR_afisare
-        x.Macro_calculator(u1.AMR_valoare(activitate));
-        u1.IMC(); //verificare metoda IMC
+        (*u1).AMR_afisare(activitate); //verificare metoda AMR_afisare
+        x.Macro_calculator((*u1).AMR_valoare(activitate));
+        (*u1).IMC(); //verificare metoda IMC
         int MET;
         inFile1>>MET;
-        exercitii_maini[0].nr_total_calorii_arse(u1.getGreutate(), MET); // verificare metoda nr_calorii_arse 
+        exercitii_maini[0].nr_total_calorii_arse((*u1).getGreutate(), MET); // verificare metoda nr_calorii_arse 
         a1.adauga_exercitiu(exercitii_picioare[0]);
         a1.start_exercitii();
-         
+        Antrenament a2("Pentru luni", exercitii);
+        const int latime_fereastra = 800; 
+        const int inaltime_fereastra = 600;
+        sf::RenderWindow window(sf::VideoMode(latime_fereastra, inaltime_fereastra), "Aplicatie Fitness v0.4", sf::Style::Default);
+        window.setFramerateLimit(60);
+        MainMeniu meniu(window.getSize().x, window.getSize().y);
+        Fereastra_3 fereastra3 (window.getSize().x, window.getSize().y);
+        Fereastra_4 fereastra4 (window.getSize().x, window.getSize().y);
+        Fereastra_1 fereastra1 (window.getSize().x, window.getSize().y);
+        Fereastra_2 fereastra2 (window.getSize().x, window.getSize().y);
+        sf::Clock clock;
+        int var_ctr = -1;
+    while(window.isOpen()){
+        sf::Event event;
+        while (window.pollEvent(event)){
+            switch (event.type)
+            {
+            case sf::Event::KeyReleased:
+                if(var_ctr == -1){
+                switch(event.key.code){
+                    case sf::Keyboard::Up:
+                        meniu.MoveUp();
+                        break;
+                    case sf::Keyboard::Down:
+                        meniu.MoveDown();
+                        break;
+                    case sf::Keyboard::Return:
+                    switch(meniu.GetPressedItem()){
+                        case 0:
+                            var_ctr = 0;
+                            std::cout << "Primul buton a fost apasat." << std::endl;
+                            break;
+                        case 1:
+                            var_ctr = 1;
+                            std::cout << "Al doilea buton a fost apasat." << std::endl;
+                            break;
+                        case 2:
+                            var_ctr = 2;
+                            std::cout << "Al treilea buton a fost apasat." << std::endl;
+                            break;
+                        case 3:
+                            var_ctr = 3;
+                            std::cout << "Al patrulea buton a fost apasat." << std::endl;
+                            break;
+                        case 4:
+                            window.close();
+                            break;
+                        default:
+                            break;
+                    }
+                    default:
+                        break;
+                }}
+                if(var_ctr == 2){
+                    switch(event.key.code){
+                    case sf::Keyboard::Up:
+                        fereastra3.MoveUp();
+                        break;
+                    case sf::Keyboard::Down:
+                        fereastra3.MoveDown();
+                        break;
+                    case sf::Keyboard::Return:
+                    switch(fereastra3.GetPressedItem()){
+                        case 0:
+                            std::cout << x;
+                            break;
+                        case 1:
+                            x.Macro_calculator((*u1).AMR_valoare(activitate));
+                            break;
+                        case 2:
+                            inFile2>>activitate;
+                            u1->AMR_afisare(activitate);
+                            break;
+                        case 3:
+                            u1->IMC();
+                            break;
+                        case 4:
+                            var_ctr = -1;
+                            break;
+                        default:
+                            break;
+                    }
+                    default:
+                        break;
+                }}
+                if(var_ctr == 3){
+                switch(event.key.code){
+                    case sf::Keyboard::Up:
+                        fereastra4.MoveUp();
+                        break;
+                    case sf::Keyboard::Down:
+                        fereastra4.MoveDown();
+                        break;
+                    case sf::Keyboard::Return:
+                    switch(fereastra4.GetPressedItem()){
+                        case 0:
+                            u1->setNume("Andrei");
+                            std::cout << "Primul buton a fost apasat." << std::endl;
+                            break;
+                        case 1:
+                            u1->setSex("masculin");
+                            std::cout << "Al doilea buton a fost apasat." << std::endl;
+                            break;
+                        case 2:
+                            u1->setInaltime(185);
+                            std::cout << "Al treilea buton a fost apasat." << std::endl;
+                            break;
+                        case 3:
+                            u1->setGreutate(85);
+                            std::cout << "Al patrulea buton a fost apasat." << std::endl;
+                            break;
+                        case 4:
+                            u1->setNutritie(x);
+                            break;
+                        case 5:
+                            std::cout<< (*u1);
+                            break;
+                        case 6:
+                           var_ctr = -1;
+                            break;
+                        default:
+                            break;
+                    }
+                    default:
+                        break;}}
+                if(var_ctr == 1){
+                switch(event.key.code){
+                    case sf::Keyboard::Up:
+                        fereastra1.MoveUp();
+                        break;
+                    case sf::Keyboard::Down:
+                        fereastra1.MoveDown();
+                        break;
+                    case sf::Keyboard::Return:
+                    switch(fereastra1.GetPressedItem()){
+                        case 0:
+                            a2.adauga_exercitiu(ef12);
+                            a2.adauga_exercitiu(ef10);
+                            a2.adauga_exercitiu(ef3);
+                            std::cout << a2;
+                            break;
+                        case 1:
+                            var_ctr = -1;
+                            break;
+                        default:
+                            break;
+                    }
+                    default:
+                        break;}}
+                if(var_ctr == 0){
+                switch(event.key.code){
+                    case sf::Keyboard::Up:
+                        fereastra2.MoveUp();
+                        break;
+                    case sf::Keyboard::Down:
+                        fereastra2.MoveDown();
+                        break;
+                    case sf::Keyboard::Return:
+                    switch(fereastra2.GetPressedItem()){
+                        case 0:
+                            break;
+                        case 1:
+                            var_ctr = -1;
+                            break;
+                        default:
+                            break;
+                    }
+                    default:
+                        break;}}
+                break;
+            case sf::Event::Closed:
+                window.close();
+                break;
+            default:
+                break;
+            }
+        }
+        if(var_ctr == 0){
+            window.clear(sf::Color::Cyan);
+            fereastra2.draw(window);
+            window.display();}
+        if(var_ctr == 1){
+            window.clear(sf::Color::Cyan);
+            fereastra1.draw(window);
+            window.display();}
+        if(var_ctr == 3){
+            window.clear(sf::Color::Cyan);
+            fereastra4.draw(window);
+            window.display();}
+        if(var_ctr == 2){
+            window.clear(sf::Color::Cyan);
+            fereastra3.draw(window);
+            window.display();}
+        if(var_ctr == -1){
+            window.clear(sf::Color::Cyan);
+            meniu.draw(window);
+            window.display();
+        }
+    }
+
+    
+    
     }
     catch(eroare_exercitiu &eroare){
         std::cout << eroare.what() << std::endl;
