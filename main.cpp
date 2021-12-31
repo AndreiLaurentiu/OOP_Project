@@ -7,11 +7,7 @@
 #include "Antrenament.h"
 #include "Exercitiu_factory.h"
 #include "Meniu.h"
-#include "Fereastra_1.h"
-#include "Fereastra_2.h"
-#include "Fereastra_3.h"
-#include "Fereastra_4.h"
-#include "Button.h"
+#include "Fereastra.h"
 
 int main(){
     std::ifstream inFile1, inFile2;
@@ -172,19 +168,21 @@ int main(){
         sf::RenderWindow window(sf::VideoMode(latime_fereastra, inaltime_fereastra), "Aplicatie Fitness v0.4", sf::Style::Default);
         window.setFramerateLimit(60);
         MainMeniu meniu(window.getSize().x, window.getSize().y);
-        Fereastra_3 fereastra3 (window.getSize().x, window.getSize().y);
-        Fereastra_4 fereastra4 (window.getSize().x, window.getSize().y);
-        Fereastra_1 fereastra1 (window.getSize().x, window.getSize().y);
-        Fereastra_2 fereastra2 (window.getSize().x, window.getSize().y);
-        sf::Clock clock;
-        int var_ctr = -1;
+        //Nutritie<float> x(300.0, 30.0,40.0 ,50.0, 2.0);
+        Fereastra FereastraOptiunea1(1, window.getSize().x, window.getSize().y, 2);
+        Fereastra FereastraOptiunea2(2, window.getSize().x, window.getSize().y, 2);
+        Fereastra FereastraOptiunea3(3, window.getSize().x, window.getSize().y, 5);
+        Fereastra FereastraOptiunea4(4, window.getSize().x, window.getSize().y, 7);
+        enum var_ctr {arata_meniu = -1, arata_prima_fereastra = 0, arata_a_doua_fereastra = 1, arata_a_treia_fereastra = 2, arata_a_patra_fereastra = 3};
+        int control_flux_event_uri = -1;
     while(window.isOpen()){
         sf::Event event;
         while (window.pollEvent(event)){
             switch (event.type)
             {
             case sf::Event::KeyReleased:
-                if(var_ctr == -1){
+            //fereastra meniu principal
+                if(control_flux_event_uri == arata_meniu){
                 switch(event.key.code){
                     case sf::Keyboard::Up:
                         meniu.MoveUp();
@@ -195,19 +193,19 @@ int main(){
                     case sf::Keyboard::Return:
                     switch(meniu.GetPressedItem()){
                         case 0:
-                            var_ctr = 0;
+                            control_flux_event_uri = 0;
                             std::cout << "Primul buton a fost apasat." << std::endl;
                             break;
                         case 1:
-                            var_ctr = 1;
+                            control_flux_event_uri = 1;
                             std::cout << "Al doilea buton a fost apasat." << std::endl;
                             break;
                         case 2:
-                            var_ctr = 2;
+                            control_flux_event_uri = 2;
                             std::cout << "Al treilea buton a fost apasat." << std::endl;
                             break;
                         case 3:
-                            var_ctr = 3;
+                            control_flux_event_uri = 3;
                             std::cout << "Al patrulea buton a fost apasat." << std::endl;
                             break;
                         case 4:
@@ -219,16 +217,17 @@ int main(){
                     default:
                         break;
                 }}
-                if(var_ctr == 2){
+                //a treia optiune din meniu
+                if(control_flux_event_uri == arata_a_treia_fereastra){
                     switch(event.key.code){
                     case sf::Keyboard::Up:
-                        fereastra3.MoveUp();
+                        FereastraOptiunea3.MoveUp();
                         break;
                     case sf::Keyboard::Down:
-                        fereastra3.MoveDown();
+                        FereastraOptiunea3.MoveDown();
                         break;
                     case sf::Keyboard::Return:
-                    switch(fereastra3.GetPressedItem()){
+                    switch(FereastraOptiunea3.GetPressedItem()){
                         case 0:
                             std::cout << x;
                             break;
@@ -243,7 +242,7 @@ int main(){
                             u1->IMC();
                             break;
                         case 4:
-                            var_ctr = -1;
+                            control_flux_event_uri = -1;
                             break;
                         default:
                             break;
@@ -251,16 +250,17 @@ int main(){
                     default:
                         break;
                 }}
-                if(var_ctr == 3){
+                //a patra optiune din meniu
+                if(control_flux_event_uri == arata_a_patra_fereastra){
                 switch(event.key.code){
                     case sf::Keyboard::Up:
-                        fereastra4.MoveUp();
+                        FereastraOptiunea4.MoveUp();
                         break;
                     case sf::Keyboard::Down:
-                        fereastra4.MoveDown();
+                        FereastraOptiunea4.MoveDown();
                         break;
                     case sf::Keyboard::Return:
-                    switch(fereastra4.GetPressedItem()){
+                    switch(FereastraOptiunea4.GetPressedItem()){
                         case 0:
                             u1->setNume("Andrei");
                             std::cout << "Primul buton a fost apasat." << std::endl;
@@ -284,23 +284,24 @@ int main(){
                             std::cout<< (*u1);
                             break;
                         case 6:
-                           var_ctr = -1;
+                           control_flux_event_uri = -1;
                             break;
                         default:
                             break;
                     }
                     default:
                         break;}}
-                if(var_ctr == 1){
+                //a doua optiune din meniu
+                if(control_flux_event_uri == arata_a_doua_fereastra){
                 switch(event.key.code){
                     case sf::Keyboard::Up:
-                        fereastra1.MoveUp();
+                        FereastraOptiunea2.MoveUp();
                         break;
                     case sf::Keyboard::Down:
-                        fereastra1.MoveDown();
+                        FereastraOptiunea2.MoveDown();
                         break;
                     case sf::Keyboard::Return:
-                    switch(fereastra1.GetPressedItem()){
+                    switch(FereastraOptiunea2.GetPressedItem()){
                         case 0:
                             a2.adauga_exercitiu(ef12);
                             a2.adauga_exercitiu(ef10);
@@ -308,27 +309,28 @@ int main(){
                             std::cout << a2;
                             break;
                         case 1:
-                            var_ctr = -1;
+                            control_flux_event_uri = -1;
                             break;
                         default:
                             break;
                     }
                     default:
                         break;}}
-                if(var_ctr == 0){
+                //prima optiune din meniu
+                if(control_flux_event_uri == arata_prima_fereastra){
                 switch(event.key.code){
                     case sf::Keyboard::Up:
-                        fereastra2.MoveUp();
+                        FereastraOptiunea1.MoveUp();
                         break;
                     case sf::Keyboard::Down:
-                        fereastra2.MoveDown();
+                        FereastraOptiunea1.MoveDown();
                         break;
                     case sf::Keyboard::Return:
-                    switch(fereastra2.GetPressedItem()){
+                    switch(FereastraOptiunea1.GetPressedItem()){
                         case 0:
                             break;
                         case 1:
-                            var_ctr = -1;
+                            control_flux_event_uri = -1;
                             break;
                         default:
                             break;
@@ -343,23 +345,23 @@ int main(){
                 break;
             }
         }
-        if(var_ctr == 0){
+        if(control_flux_event_uri == 0){
             window.clear(sf::Color::Cyan);
-            fereastra2.draw(window);
+            FereastraOptiunea1.draw(window);
             window.display();}
-        if(var_ctr == 1){
+        if(control_flux_event_uri == 1){
             window.clear(sf::Color::Cyan);
-            fereastra1.draw(window);
+            FereastraOptiunea2.draw(window);
             window.display();}
-        if(var_ctr == 3){
+        if(control_flux_event_uri == 3){
             window.clear(sf::Color::Cyan);
-            fereastra4.draw(window);
+            FereastraOptiunea4.draw(window);
             window.display();}
-        if(var_ctr == 2){
+        if(control_flux_event_uri == 2){
             window.clear(sf::Color::Cyan);
-            fereastra3.draw(window);
+            FereastraOptiunea3.draw(window);
             window.display();}
-        if(var_ctr == -1){
+        if(control_flux_event_uri == -1){
             window.clear(sf::Color::Cyan);
             meniu.draw(window);
             window.display();

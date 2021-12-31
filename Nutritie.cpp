@@ -13,9 +13,9 @@ template <typename T> std::ostream &operator<<(std::ostream &os, const Nutritie<
     }*/
 template <typename T> void Nutritie<T>::Macro_calculator(int amr){
     int nr_calorii = amr;
-    int carbohidrati_=0.5*nr_calorii;
-    int grasimi_=0.25*nr_calorii;
-    int proteine_=0.25*nr_calorii;
+    T carbohidrati_=0.5*nr_calorii;
+    T grasimi_=0.25*nr_calorii;
+    T proteine_=0.25*nr_calorii;
     std::cout<<"Valorile sunt exprimate in grame si se refera la cantitatile maxime recomandate zilnic. "<<std::endl;
     std::cout<<"Macronutrienti recomandati zilnic: "<<std::endl;
     std::cout<<round(carbohidrati_/4)<<"g carbohidrati"<<std::endl;
