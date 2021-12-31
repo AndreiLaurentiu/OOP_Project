@@ -13,12 +13,12 @@ class Fereastra
 private:
     int item_selectat;
     sf::Font font;
-    int val;
-    int valoare;
+    int id_fereastra;
+    int nr_iteme;
     std::vector<sf::Text> text;
     void item_define(int i, sf::Color color, const std::string string, int place, float width, float height);
 public:
-    Fereastra(int val, float width, float height, int valoare);
+    Fereastra(int id_fereastra, float width, float height, int nr_iteme);
     ~Fereastra();
     void draw(sf::RenderWindow &window);
     void MoveUp();
