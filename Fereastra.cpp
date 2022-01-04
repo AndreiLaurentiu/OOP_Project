@@ -16,7 +16,7 @@
     }
     text.resize(nr_iteme);
     item_define(0, sf::Color::Red, strings[id_fereastra-1][0], 1, width, height);
-    for(int i=0; i < nr_iteme; i++)
+    for(int i=1; i < nr_iteme; i++)
                 item_define(i, sf::Color::Yellow, strings[id_fereastra-1][i], i+1,  width, height);
     item_selectat = 0;
 }
