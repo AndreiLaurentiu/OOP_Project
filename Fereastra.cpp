@@ -15,35 +15,11 @@
         //throw "Nu a fost gasit font-ul bun!";
     }
     text.resize(nr_iteme);
-    for(int i=0; i < nr_iteme; i++){
-        if(id_fereastra == 1){
-            if(i == 0)
-                item_define(i, sf::Color::Red, strings[0][i], i+1, width, height);
-            else
-                item_define(i, sf::Color::Yellow, strings[0][i], i+1,  width, height);
-        }
-        if(id_fereastra == 2){
-            if(i == 0)
-                item_define(i, sf::Color::Red, strings[1][i], i+1, width, height);
-            else
-                item_define(i, sf::Color::Yellow, strings[1][i], i+1,  width, height);
-        }
-        if(id_fereastra == 3){
-            if(i == 0)
-                item_define(i, sf::Color::Red, strings[2][i], i+1, width, height);
-            else
-                item_define(i, sf::Color::Yellow, strings[2][i], i+1,  width, height);
-        }
-        if(id_fereastra == 4){
-            if(i == 0)
-                item_define(i, sf::Color::Red, strings[3][i], i+1, width, height);
-            else
-                item_define(i, sf::Color::Yellow, strings[3][i], i+1,  width, height);
-        }
-
+    item_define(0, sf::Color::Red, strings[id_fereastra-1][0], 1, width, height);
+    for(int i=0; i < nr_iteme; i++)
+                item_define(i, sf::Color::Yellow, strings[id_fereastra-1][i], i+1,  width, height);
     item_selectat = 0;
-
-}}
+}
 
  Fereastra::~Fereastra(){
 }
